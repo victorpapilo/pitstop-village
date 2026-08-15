@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --color-ink: #0B1E1A;
+  --color-ink-light: #12302A;
+  --color-ink-soft: #1B3D34;
+  --color-sand: #F1E7D2;
+  --color-cream: #FAF6EC;
+  --color-gold: #C6A15B;
+  --color-gold-light: #E4C888;
+  --color-rust: #A63B2E;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-sand);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--color-gold); color: var(--color-ink); }
+
+.ticket-notch::before,
+.ticket-notch::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background: var(--color-ink);
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.ticket-notch::before { left: -14px; }
+.ticket-notch::after { right: -14px; }
+
+.dashed-divider {
+  background-image: repeating-linear-gradient(to bottom, var(--color-ink-soft) 0 8px, transparent 8px 16px);
+  width: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-ink); }
+::-webkit-scrollbar-thumb { background: var(--color-ink-soft); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+
+.ticket-input {
+  @apply w-full border-b-2 border-ink/15 bg-transparent pb-2 font-body text-base text-ink placeholder:text-ink/30 focus:border-gold focus:outline-none;
+}
